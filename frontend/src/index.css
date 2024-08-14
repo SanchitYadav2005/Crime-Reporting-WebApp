@@ -2,25 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: black;
+body {
+  background-color: black;
 }
-@layer components{
-   .navbar{
-        backdrop-filter: blur(5px);
-    }
-    .phone_logo{
-        
-        margin-left: 3em;
-        background-color: white;
-        cursor: pointer;
-        color: black;
-        padding: 0.8rem;
-        border-radius: 10px;
-        transition: all 0.3s;
-    }
-    .phone_logo:hover{
-       box-shadow: rgba(255, 255, 255, 0.16) 0px 10px 36px 0px, rgba(255, 255, 255, 0.06) 0px 0px 0px 1px;
-
-    }
+@layer components {
+  .navbar {
+    backdrop-filter: blur(5px);
+  }
+  .phone_logo {
+    margin-left: 3em;
+    background-color: black;
+    cursor: pointer;
+    color: white;
+    padding: 0.8rem;
+    border: 1px solid white;
+    border-radius: 10px;
+    transition: all 0.3s;
+  }
+  .phone_logo:hover {
+    box-shadow: rgba(255, 255, 255, 0.16) 0px 10px 36px 0px,
+      rgba(255, 255, 255, 0.06) 0px 0px 0px 1px;
+    background-color: white;
+    color: black;
+  }
 }

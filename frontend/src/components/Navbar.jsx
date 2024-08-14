@@ -22,7 +22,7 @@ function Navbar() {
         </li>
       </ul>
       <div className="flex justify-evenly items-center">
-        <Link to="login">login</Link>
+        <Link className="hover:text-hover_color" to="login">login</Link>
         <PhoneIcon className="phone_logo" width={50} />
       </div>
     </nav>
