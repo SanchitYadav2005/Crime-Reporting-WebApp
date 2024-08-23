@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import HeroSection from "./HeroSection";
+import InfoSection from "./InfoSection";
 
 
 function Home() {
@@ -8,6 +9,7 @@ function Home() {
     <>
       <Navbar />
       <HeroSection />
+      <InfoSection/>
     </>
   );
 }
