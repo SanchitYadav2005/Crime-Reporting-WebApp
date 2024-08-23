@@ -25,4 +25,19 @@ body {
     background-color: white;
     color: black;
   }
+  .main-heading {
+    color: #219ebc;
+    font-size: 4em;
+    margin-top: 3em;
+    text-shadow: 0px 9px 5px rgba(33, 158, 188, 0.6);
+  }
+  .main-heading::selection {
+    color: white;
+  }
+  .sel {
+    text-shadow: 0px 9px 5px rgba(255, 255, 255, 0.6);
+  }
+  .sel::selection {
+    color: black;
+  }
 }
