@@ -5,13 +5,17 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors:{
+      colors: {
         'logo-color': "#caf0f8",
-        'hover_color':'#dee2e6',
-        'text_color':"#219ebc"
+        'hover_color': '#dee2e6',
+        'text_color': "#219ebc"
+      },
+      spacing: {
+        'mt-120': '15em',
       }
     },
   },
   plugins: [],
 }
+
 
