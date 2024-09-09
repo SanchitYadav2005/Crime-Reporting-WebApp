@@ -43,3 +43,20 @@ module.exports.loginUser = async (req, res) => {
     res.status(error.status).json({ message: error });
   }
 };
+
+// logging out the user
+module.exports.logoutUser = (req, res) => {
+  try {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ message: "Failed to logout!" });
+      }
+      res.clearCookie("connect.sid"); 
+      res.status(200).json({ message: "Logged out successfully" });
+    });
+  } catch (error) {
+    console.error(error); 
+    res.status(400).json({ message: error.message });
+  }
+};
+
