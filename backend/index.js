@@ -6,8 +6,6 @@ const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-
-
 //routes and all other imports
 const Routes = require("./routes/routes");
 const userRoutes = require("./routes/userRoutes");
@@ -17,7 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
-
 
 //routes
 app.use("/", Routes);
