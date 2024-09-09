@@ -16,13 +16,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// configured the basic session 
+// configured the basic session
 app.use(
   session({
     secret: "my new secret",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true },
+    cookie: { secure: true, maxAge: 60000 },
   })
 );
 
