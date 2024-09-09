@@ -5,6 +5,7 @@ const app = express();
 const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const session = require("express-session");
 
 //routes and all other imports
 const Routes = require("./routes/routes");
@@ -14,6 +15,17 @@ const userRoutes = require("./routes/userRoutes");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+
+// configured the basic session 
+app.use(
+  session({
+    secret: "my new secret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
+
 app.use(cors());
 
 //routes
