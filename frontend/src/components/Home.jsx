@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import HeroSection from "./HeroSection";
 import InfoSection from "./InfoSection";
+import AboveFooter from './AboveFooter'
 
 
 function Home() {
@@ -10,6 +11,7 @@ function Home() {
       <Navbar />
       <HeroSection />
       <InfoSection/>
+      <AboveFooter/>
     </>
   );
 }
