@@ -49,7 +49,7 @@ body {
   .aboveFooterHeading span {
     color: white;
   }
-  .aboveFooterButton{
+  .aboveFooterButton {
     padding: 1em 3em 1em 3em;
     border: 2px solid #219ebc;
     border-radius: 20px;
@@ -57,10 +57,47 @@ body {
     color: #219ebc;
     transition: all 0.3s;
   }
-  .aboveFooterButton:hover{
+  .aboveFooterButton:hover {
     transform: translateY(-20px);
     background-color: #219ebc;
     color: white;
-    box-shadow: 0px 6px 12px 0px rgba(33,158,188,1);
+    box-shadow: 0px 6px 12px 0px rgba(33, 158, 188, 1);
+  }
+  .form-section {
+    height: 630px;
+    padding: 10em 5em 10em 5em;
+  }
+  .form-section form {
+    margin-left: 5em;
+    margin-top: 5em;
+  }
+
+  .input {
+    border: 2px solid black;
+    margin-bottom: 1em;
+    background-color: transparent;
+    outline: none;
+    font-size: 1.5em;
+    border-radius: 10px;
+    color: black;
+    width: 300px;
+    padding: 1em 2em 1em 1em;
+  }
+  .login-btn {
+    display: block;
+    border: 2px solid black;
+    width: 300px;
+    border-radius: 10px;
+    font-size: 2em;
+    padding: 0.2em 1.2em 0.4em 1.2em;
+    margin-top: 2em;
+    color: white;
+    background-color: black;
+    transition: all 0.3s;
+  }
+  .login-btn:hover {
+    transform: translateY(-10px);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   }
 }

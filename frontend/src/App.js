@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Route, Routes } from "react-router-dom";
 
-import Home from "./components/Home";
+// pages
+import Home from "./pages/Home";
+import LoginPage from "./pages/LoginPage";
+import SignUp from "./pages/SignUp";
 
 function App() {
   const [data, setData] = useState();
@@ -17,7 +21,11 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
     </div>
   );
 }
