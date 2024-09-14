@@ -100,4 +100,57 @@ body {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   }
+  .signup-btn {
+    display: block;
+    border: 2px solid black;
+    width: 300px;
+    border-radius: 10px;
+    font-size: 2em;
+    padding: 0.2em 1.2em 0.4em 1.2em;
+    margin-top: 2em;
+    color: white;
+    background-color: black;
+    transition: all 0.3s;
+  }
+  .signup-btn:hover {
+    transform: translateY(-10px);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
+  .form-section-2{
+    height: 630px;
+    padding: 3em 5em 10em 5em;
+  }
+  .form-section-2 form{
+    margin-left: 5em;
+    margin-right: 3em;  
+  }
+  .input2{
+    border: 2px solid black;
+    display: block;
+    padding: 1em 2em 1em 1em;
+    font-size: 1.2em;
+    margin-bottom: 2em;
+    border-radius: 10px;
+    width: 300px;
+  }
+ /* .input2:nth-of-type(4){
+  width: 250px;
+ } */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .num-prefix{
+    font-size: 1.5em;
+    font-weight: bolder;
+    background-color: #f8f9fa;
+    padding: 0.7em;
+    border-radius: 10px;
+    margin-bottom: 1.5em;
+    margin-right: 0.5em;
+    border: 2px solid black;
+    cursor: pointer;
+  }
 }
