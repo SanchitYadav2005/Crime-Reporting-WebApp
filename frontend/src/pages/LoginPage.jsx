@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 
 export default function LoginPage() {
   const [email, setEmail] = useState(null);
@@ -11,6 +12,11 @@ export default function LoginPage() {
     setPassword(e.target.value);
   };
   return (
+    <>
+    
+    <Helmet>
+      <title>Alertify | login</title>
+    </Helmet>
     <section className="flex">
       <div className="text-white mt-auto mb-auto text-center mr-28 ml-28">
         <h1 className="text-3xl font-bold mb-6">
@@ -49,5 +55,6 @@ export default function LoginPage() {
         </form>
       </section>
     </section>
+    </>
   );
 }
