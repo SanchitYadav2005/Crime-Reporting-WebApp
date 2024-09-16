@@ -153,4 +153,7 @@ body {
     border: 2px solid black;
     cursor: pointer;
   }
+  #phone{
+    width: 230px;
+  }
 }
