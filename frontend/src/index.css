@@ -156,4 +156,94 @@ body {
   #phone{
     width: 230px;
   }
+  .dashboard{
+    height: 570px;
+  }
+  .dashboard-div{
+    background-color: black;
+    height: fit-content;
+    color: white;
+    padding: 5em 5em 5em 5em;
+    border-radius: 10px;
+    margin-left: 5em;
+    margin-top: 2em;
+  }
+  .dashboard-div div{
+    margin-bottom: 3em;
+  }
+  .dashboard-div span{
+    font-size: 2em;
+  }
+  .dashboard-div div p{
+    display: inline;
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    padding: 1em 2em 1em 2em;
+    margin-left: 3em;
+    font-size: 1.2em;
+  }
+  .dashboard-div div:nth-of-type(1) p:nth-of-type(1){
+    margin-left: 6.6em;
+  }
+  .reports{
+    margin-left: 27em;
+    margin-top: 2em;
+  }
+  .buttons{
+    margin-top: 40%;
+  }
+  .buttons .btttn{
+    font-size: 2em;
+    margin-left: 3em;
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    padding:0.5em ;
+  }
+/* Overall styles for body and HTML */
+
+
+/* Gradient Background */
+.bg-gradient-to-br {
+  background: linear-gradient(45deg, #6EE7B7, #3B82F6);
+}
+
+/* Input styles */
+.input {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem; /* Added padding for better spacing */
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3B82F6; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(59, 130, 247, 0.5); /* Shadow effect on focus */
+}
+
+/* Number prefix for phone input */
+.num-prefix {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Button styles */
+.btn {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05); /* Scale effect on hover */
+}
+
+/* Error message styling */
+.text-red-500 {
+  margin-top: 10px;
+  font-size: 0.875rem; /* Smaller font size for error messages */
+}
+
 }
