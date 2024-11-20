@@ -1,6 +1,5 @@
 const Report = require("../models/Report");
 
-// Create a report
 module.exports.createReport = async (req, res) => {
   const { title, description, location } = req.body;
   const user = req.user; // Assuming you're using middleware to attach user to req
@@ -11,10 +10,17 @@ module.exports.createReport = async (req, res) => {
       imageUrl = req.file.path; // Path to the uploaded image
     }
 
+    // Ensure `location` includes `type` and `coordinates`
+    const reportLocation = {
+      type: location?.type || "Point", // Default to "Point" if not provided
+      coordinates: location?.coordinates || [0, 0], // Provide a default coordinate or handle as needed
+    };
+
+    // Create the report with all necessary data
     const report = await Report.create({
       title,
       description,
-      location,
+      location: reportLocation, // Pass the location object
       image: imageUrl,
       user,
     });
@@ -28,6 +34,7 @@ module.exports.createReport = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
 
 // Get all reports
 module.exports.getAllReports = async (req, res) => {
