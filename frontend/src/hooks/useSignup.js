@@ -1,50 +1,43 @@
 import axios from "axios";
-import useUserContext from "./useUserContext";
 import { useState } from "react";
+import useUserContext from "./useUserContext";
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useUserContext();
 
-  const signup = async (
-    firstname,
-    lastname,
-    username,
-    email,
-    phone,
-    password
-  ) => {
+  const signup = async (firstname, lastname, username, email, phone, password) => {
     const url = "http://localhost:8080/api/user/signup";
     setIsLoading(true);
-    setError(false);
+    setError(null);
 
     try {
-      const token = localStorage.getItem("token");
-      const headers = {
-        "Content-Type": "application/json",
-        ...(token && { Authorization: `Bearer ${token}` }),
-      };
-      const response = await axios.post(
-        url,
-        { firstname, lastname, username, email, phone, password },
-        headers
-      );
+      const response = await axios.post(url, {
+        firstname,
+        lastname,
+        username,
+        email,
+        phone,
+        password,
+      });
+
       const newToken = response.data.token;
       localStorage.setItem("token", newToken);
 
-      const jsonData = response.data;
-      localStorage.setItem("user", JSON.stringify(jsonData));
-      dispatch({ type: "LOGIN", payload: jsonData });
-      setIsLoading(false);
+      const userJson = response.data.user; // Adjust if necessary based on your API response
+      localStorage.setItem("user", JSON.stringify(userJson));
+      dispatch({ type: "LOGIN", payload: userJson });
+
+      return true; // Indicate successful signup
     } catch (error) {
+      setError(error.response?.data?.message || "An error occurred while signing up!");
+      console.error(error);
+      return false; // Indicate failed signup
+    } finally {
       setIsLoading(false);
-      if (error.response && error.response.data && error.response.data.error) {
-        setError(error.response.data.error);
-      } else {
-        setError("An error occurred while signing up.");
-      }
     }
   };
+
   return { signup, error, isLoading };
 };

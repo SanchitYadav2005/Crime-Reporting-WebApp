@@ -19,29 +19,33 @@ export const useLogin = () => {
         ...(token && { Authorization: `Bearer ${token}` }),
       };
 
-      const response = await axios.post(
-        url,
-        {
-          email,
-          password,
-        },
-        { headers }
-      );
+      const response = await axios.post(url, { email, password }, { headers });
+
+      // Handle successful login: store token, user data, and dispatch login
       const newToken = response.data.token;
       localStorage.setItem("token", newToken);
 
-      const userJson = response.data;
+      const userJson = response.data.user; 
       localStorage.setItem("user", JSON.stringify(userJson));
       dispatch({ type: "LOGIN", payload: userJson });
+
+      setIsLoading(false); // Set loading state back to false after successful login
+      return true; // Return true on successful login
     } catch (error) {
-      setIsLoading(false);
-      if (error.response && error.response.data && error.response.data.error) {
-        setError(error.response.data.error);
+      setIsLoading(false); // Ensure loading state is false after an error
+
+      // Improved error handling
+      if (error.response && error.response.data) {
+        const errorMessage = error.response.data.error || "An error occurred during login.";
+        setError(errorMessage);
       } else {
-        setError("An error occurred while logging in!");
-        console.error(error);
+        setError("A network error occurred. Please try again.");
       }
+
+      console.error("Login error:", error); // Log the complete error for debugging
+      return false; // Return false if an error occurs
     }
   };
+
   return { login, error, isLoading };
 };
