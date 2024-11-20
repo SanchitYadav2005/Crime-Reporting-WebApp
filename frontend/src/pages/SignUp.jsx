@@ -1,119 +1,137 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
+import { useSignup } from "../hooks/useSignup";
+import { useNavigate } from "react-router-dom";
+import useUserContext from "../hooks/useUserContext";
 
 export default function SignUp() {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [username, setUserName] = useState(null);
-  const [firstname, setFirstName] = useState(null);
-  const [lastname, setLastName] = useState(null);
-  const [phone, setPhone] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUserName] = useState("");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const { signup, error, isLoading } = useSignup();
+  const navigate = useNavigate();
+  const { state } = useUserContext();
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const success = await signup(
+      firstname,
+      lastname,
+      username,
+      email,
+      phone,
+      password
+    );
+
+    // Only navigate if signup was successful
+    if (success) {
+      navigate(`/dashboard/`);
+    }
   };
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
+
+  // Handle navigation to login page
+  const handleNavigateToLogin = () => {
+    navigate("/login");
   };
-  const handleUserName = (e) => {
-    setUserName(e.target.value);
-  };
-  const handleFistName = (e) => {
-    setFirstName(e.target.value);
-  };
-  const handleLastName = (e) => {
-    setLastName(e.target.value);
-  };
-  const handlePhone = (e) => {
-    setPhone(e.target.value);
-  };
+
   return (
     <>
       <Helmet>
-        <title>Alertify | signup</title>
+        <title>Alertify | Sign Up</title>
       </Helmet>
-      <section className="flex">
-        <div className="text-white mt-auto mb-auto text-center mr-28 ml-28">
-          <h1 className="text-3xl font-bold mb-6">
-            Access Your Account and{" "}
-            <span className="text-text_color font-extrabold">
-              Take a Stand Against Crime.
+      <section className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-br from-gray-800 to-gray-900">
+        <div className="text-white text-center mb-8 md:mb-0 md:mr-20">
+          <h1 className="text-5xl font-bold mb-4">
+            Create Your Account and{" "}
+            <span className="text-yellow-300 font-extrabold">
+              Stand Against Crime.
             </span>
           </h1>
-          <p className="text-xl mr-32 ml-32 text-gray-400">
-            By logging in, you’re joining a community dedicated to making a
-            difference. Report crimes securely and anonymously, and help protect
-            your neighborhood. Every report matters in the fight for a safer,
-            stronger community.
+          <p className="text-lg text-gray-300 max-w-md mx-auto">
+            Join a community dedicated to making a difference. Report crimes
+            securely and anonymously, helping to protect your neighborhood.
           </p>
         </div>
-        <section className="bg-white form-section-2">
-          <form action="" className="signup-form">
+        <section className="bg-white bg-opacity-90 backdrop-blur-md p-8 rounded-xl shadow-lg w-full max-w-lg border border-gray-300">
+          <form className="signup-form" onSubmit={handleSubmit}>
             <input
-              className="input2"
+              className="input"
               type="text"
               required
-              name="firstname"
-              id="firstname"
-              value={firstname}
-              onChange={handleFistName}
               placeholder="First Name"
+              value={firstname}
+              onChange={(e) => setFirstName(e.target.value)}
             />
             <input
-              className="input2"
+              className="input"
               type="text"
               required
-              name="lastname"
-              id="lastname"
-              value={lastname}
-              onChange={handleLastName}
               placeholder="Last Name"
+              value={lastname}
+              onChange={(e) => setLastName(e.target.value)}
             />
             <input
-              className="input2"
+              className="input"
               type="email"
               required
-              name="email"
-              id="firstname"
-              value={email}
-              onChange={handleEmail}
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
-              className="input2"
+              className="input"
               type="text"
               required
-              name="usename"
-              id="username"
-              value={username}
-              onChange={handleUserName}
               placeholder="Username"
+              value={username}
+              onChange={(e) => setUserName(e.target.value)}
             />
-            <div className="flex items-center">
-              <span className="num-prefix">+91</span>
-              <input
-                className="input2"
-                type="number"
-                required
-                name="phone"
-                id="phone"
-                value={phone}
-                onChange={handlePhone}
-                placeholder="Phone"
-              />
-            </div>
             <input
-              className="input2"
+              className="input"
+              type="tel" // Changed to "tel" for better UX on mobile
+              required
+              placeholder="Phone (without prefix)"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+            <input
+              className="input"
               type="password"
               required
-              name="password"
-              id="password"
-              value={password}
-              onChange={handlePassword}
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="signup-btn">Signup</button>
+            {isLoading ? (
+              <button
+                className="btn w-full py-2 mt-4 bg-blue-600 text-white rounded-lg opacity-50 cursor-not-allowed"
+                disabled
+              >
+                Signing up...
+              </button>
+            ) : (
+              <button className="btn w-full py-2 mt-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-lg transition-transform duration-300 hover:bg-gradient-to-l hover:scale-105">
+                Sign Up
+              </button>
+            )}
+            {error && (
+              <div className="text-red-500 text-center mt-2">{error}</div>
+            )}
           </form>
+          {/* Text above the login button */}
+          <p className="text-center text-gray-600 mt-4">
+            Already have an account?
+          </p>
+          {/* Login button below the text */}
+          <button
+            onClick={handleNavigateToLogin}
+            className="mt-2 w-full py-2 bg-green-500 text-white rounded-lg shadow-lg transition-transform duration-300 hover:bg-green-600 hover:scale-105"
+          >
+            Log In
+          </button>
         </section>
       </section>
     </>
